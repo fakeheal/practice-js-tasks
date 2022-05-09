@@ -9,7 +9,7 @@ Create a class `Genre` which has a private property called `name` that gets set 
 Create a class `Platform` which has a private property `name` and accepts only the following strings as its value: `PC`, `CONSOLE`, `ANDROID`, `IOS`. Attempts to set the `name` of a `Platform` instance should result in `Error`. `Platform` to have a getter that allows getting `name` outside of the class.
 
 #### 1.3. `Game`
-Create a class `Game` which accepts the following arguments in its constructor:
+Create a class `Game` which accepts the following arguments in its constructor and sets them in private properties:
 - `id` (integer, unique number for the game inside a `Store`)
 - `title` (*string*)
 - `platforms` (*array of `Platform`*)
@@ -32,11 +32,11 @@ Example structure of the `items` property:
 ```
 [
 	{
-		game: Game,
+		gameId: Game.id,
 		quantity: number,
 	},
 	{
-		game: Game,
+		gameId: Game.id,
 		quantity: number,
 	},
 	...
@@ -55,9 +55,13 @@ Create a new method in `Store`  called `newOrder` that accepts a `User` and an a
 
 > When creating an order don't forget to check how many copies were already sold by going through each existing order that is in `Store.orders` and checking what was the initial inventory of each  game during initialization of the `Store`.
 
+```
+const items = [{gameId: 1, quantity: 3, gameId: 2, quantity: 4}];
 
+const store = new Store(games);
+const user = new User("Ivanka", "ivanka@best-customer.eu");
 
+store.newOrder(user, items);
 
-
-
-
+console.log(store.orders); // must have the new `Order` inserted
+```
